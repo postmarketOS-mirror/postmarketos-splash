@@ -1,0 +1,14 @@
+---
+
+# global settings	
+image: alpine:3.10	
+stages:	
+  - linter
+
+flake8:
+  stage: linter
+  allow_failure: true
+  before_script:
+    - apk -q add python3 py-flake8
+  script:
+    - flake8 --ignore E501,E722,W504,W605 $(find . -a -name '*.py')
